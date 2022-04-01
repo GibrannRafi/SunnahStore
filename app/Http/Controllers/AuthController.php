@@ -25,12 +25,12 @@ class AuthController extends Controller
         } else {
             if(Auth::attempt($request->only('email','password'))) {
                 $user = User::where('email', $request->email)->first();
-                // $roles = $user->getRoleNames();
-                // if($roles[0] == 'admin'){
+                $roles = $user->getRoleNames();
+                if($roles[0] == 'admin'){
                     return redirect()->route('dashboard');
-                // }else{
-                    // return redirect()->route('dashboardUser');
-                // }
+                }else{
+                    return redirect()->route('dashboardUser');
+                }
             }else{
                 return redirect()->route('login')->with('warning',"email atau password anda salah");
             }
