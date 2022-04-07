@@ -88,6 +88,16 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Barang::where('id', $id)->first();
+        if ($data) {
+            if ($data->delete()) {
+                return['status' => 'Berhasil Menghapus Data'];
+            } else {
+                return abort("404");
+            }
+        } else {
+            return abort("404");
+        }
+        
     }
 }
