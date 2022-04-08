@@ -15,6 +15,7 @@ class CreateBarangTable extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('Category_id');
             $table->string('nama_barang');
             $table->longText('gambar_barang');
             $table->string('deskripsi');
